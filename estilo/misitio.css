@@ -1,0 +1,119 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#main
+{
+  display: flex;
+    flex-direction: column;
+   /* max-width: 1100px;*/
+
+}
+
+header  {
+    display: flex;
+    flex-direction: row;
+    max-height: 70px;
+    color: #F9FDD8;
+    background-color: #FF8000;
+    justify-content: space-between;
+     align-items: center;
+   /* align-content: space-around;*/
+    /*align-items: center;*/
+    /*border-radius: 30px 30px 0 0;
+    border: 2px solid black;*/
+    /*order: 1;*/}
+header h1{
+    display: flex;
+    /*border: 1px solid red;*/
+    font-size: 30px;
+   padding-left: 30px;
+}
+header form
+{
+    display: flex;
+    align-content: space-between;
+    padding-right: 30px;
+    /*border: 1px solid red;*/
+
+}
+header p
+{
+    margin-right: 20px;
+
+}
+/*El nav*/
+#main nav
+{
+    display: flex;
+    justify-content:flex-end;
+    justify-items: center;
+    background-color: #FF8000;
+    max-height:35px;
+    height: 35px;
+    color: white;
+    /*border: 2px solid black;*/
+
+}
+#main nav  span
+{
+    margin-right: 30px;
+    padding-right: 30px;
+    max-height: 25px;
+    color: white;
+   /*border: 1px solid black;*/
+}
+.enlace1
+{
+    color: white;
+    font-size: 20px;
+}
+/*fin del nav*/
+form div
+{   display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    max-width: 400px;
+    /*margin-right: 25px;*/
+    /*border: 1px solid black;*/
+}
+.form-control
+{
+    max-height: 25px;
+}
+.botones
+{
+    margin-right: 5px;
+
+}
+/* Botón propio
+-------------------------------------------------- */
+
+/* Redefine los estilos de .btn */
+/* Modificar el texto y el color de fondo en los tres estados
+   principales del botón: default, hover y active. */
+.btn-ttc,
+.btn-ttc:hover,
+.btn-ttc:active {
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #716f6f;
+}
+
+/* Aplicar gradientes de colores */
+/* Nota: no se muestran aquí todos los gradientes que tendrás que
+   definir para los diferentes navegadores. */
+.btn-ttc {
+    background-repeat: repeat-x;
+    background-image: linear-gradient(top, #009ED2 0%, #007DA7 100%);
+...
+}
+
+/* Estilos del estado :hover del botón */
+/* Uno de los estilos más sencillos y eficaces para el estado :hover
+   consiste en subir hacia arriba ligeramente la imagen de fondo del
+   botón, pero puedes definir otros estilos adicionales si quieres. */
+.btn-ttc:hover {
+    background-position: 0 -15px;
+}
+

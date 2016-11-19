@@ -1,0 +1,19 @@
+{
+    "name": "Rentel Comunicaciones",
+    "version": "1.0",
+    "description": "Mi  extension",
+    "manifest_version" : 2,
+    "author": "Roca",
+    "icons": { "16": "icono.png"},
+    "browser_action": {
+        "default_title": "Rentel Comunicaciones",
+        "default_icon": "icono.png",
+        "default_popup": "popup.html"
+
+    },
+
+    "permissions": ["downloads", "<all_urls>"],
+     "web_accessible_resources":
+     ["icono.png"]
+}
+
