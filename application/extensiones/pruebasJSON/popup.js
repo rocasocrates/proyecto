@@ -4,7 +4,7 @@ var allpublic = [];
 var paralatabla = [];
 var interval;
 dn =  getCookie("dni");
-//setCookie("dni", "hayquesertonto", 2);
+//setCookie("dni", "pepe", 2);
 // Mostrar todos los enlaces visibles.
 /*la url*/
     chrome.runtime.onMessage.addListener(
@@ -14,7 +14,7 @@ dn =  getCookie("dni");
                 url: 'http://localhost/publicidad/index.php/Extensiones/publicidad_consumida',
                 type: 'POST',
                 async: true,
-                data: {accion : JSON.stringify(losiframe), lala: dn},
+                data: {accion: JSON.stringify(losiframe), lala: dn},
                 dataType: 'json'
                 /*success: function(response) {
                  console.log(response);

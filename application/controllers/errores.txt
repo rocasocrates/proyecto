@@ -1,1 +1,27 @@
-string
+Array
+(
+    [0] => Array
+        (
+            [url] => Array
+                (
+                    [hash] => 
+                    [search] => 
+                    [pathname] => /
+                    [port] => 
+                    [hostname] => www.hola.com
+                    [host] => www.hola.com
+                    [protocol] => http:
+                    [origin] => http://www.hola.com
+                    [href] => http://www.hola.com/
+                    [ancestorOrigins] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [1] => google_ads_iframe_/87824813/hola/home_0
+    [2] => google_ads_iframe_/87824813/hola/home_1
+    [3] => google_ads_iframe_/87824813/hola/home_2
+)

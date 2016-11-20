@@ -63,7 +63,7 @@ class Extensiones extends CI_Controller
              $papa = $_POST["lala"];
             // $papi = json_decode($papa, true);
              $iframes = json_decode($resul, true);
-        file_put_contents(__DIR__ .'/errores.txt', print_r(gettype($papa), true));
+        //file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
              $laurl = $iframes[0]['url']['href'];
                 unset($iframes[0]);
              //$prueba = $_SESSION['minick'];//$this->session->userdata('minick');
