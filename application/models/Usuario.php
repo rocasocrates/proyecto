@@ -32,16 +32,30 @@ class Usuario extends CI_Model {
 	}
 	function add_user()
 	{
-		$this->db->insert('usuarios', array(
-				'nick' => $this->input->post('nick', TRUE),
-				'password' => $this->input->post('password', TRUE),
-		        'email' => $this->input->post('email', TRUE)));
+        $eltoken = $this->generarRandomString(64, false);
+        $comprobartoken = $this->db->get_where('usuarios', array('token'=>$eltoken));
+        if($comprobartoken->num_rows() == 0)
+        {
+            $this->db->insert('usuarios', array(
+                'nick' => $this->input->post('nick', TRUE),
+                'password' => $this->input->post('password', TRUE),
+                'email' => $this->input->post('email', TRUE),
+                'token' => $eltoken));
+        }else
+        {
+           $this->add_user();
+        }
+
+
 	}
-	function iniciar_sesion()
+	function iniciar_sesion($correo, $pass)
 	{
-		$consulta = $this->db->get_where('usuarios', 
-			array('email'=>$this->input->post('email', TRUE),
-			      'password'=>$this->input->post('password', TRUE)));
+		//$consulta = $this->db->get_where('usuarios',
+			//array('email'=>$this->input->post('email', TRUE),
+			  //    'password'=>$this->input->post('password', TRUE)));
+        $consulta = $this->db->get_where('usuarios',
+            array('email'=>$correo,
+                'password'=>$pass));
 		if($consulta->num_rows() == 1)
 		{
 			return true;
@@ -50,7 +64,17 @@ class Usuario extends CI_Model {
 			return false;
 		}
 	}
+  public  function generarRandomString($length = 64, $soloNumeros = false) {
 
+        $characters = !$soloNumeros ? '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-' : '0123456789';
+        $characterslen = strlen($characters);
+        $string = '';
 
+        for ($p = 0; $p < $length; $p++) {
+            $string .= $characters[mt_rand(0,$characterslen - 1)];
+        }
+
+        return $string;
+    }
 }
 ?>

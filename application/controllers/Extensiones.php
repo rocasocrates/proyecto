@@ -5,8 +5,11 @@
  * Date: 3/11/16
  * Time: 17:29
  */
-
 defined('BASEPATH') OR exit('No direct script access allowed');
+/*class Usuario{
+    public $categorias;
+
+}*/
 
 class Extensiones extends CI_Controller
 {
@@ -59,22 +62,52 @@ class Extensiones extends CI_Controller
     function publicidad_consumida()
     {
        //  if(isset($_SESSION['minick'])) {
-             $resul = $_POST["accion"];
-             $papa = $_POST["lala"];
-            // $papi = json_decode($papa, true);
-             $iframes = json_decode($resul, true);
-        //file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
-             $laurl = $iframes[0]['url']['href'];
-                unset($iframes[0]);
-             //$prueba = $_SESSION['minick'];//$this->session->userdata('minick');
-             $contador = count($iframes);
-             $data = array(
-                 'nick_usuarios' =>$papa,
-                 'contador' => $contador,
-                 'url' => $laurl
-             );
-             $this->db->insert('iframes', $data);
+        if(isset($_POST["accion"]) && isset($_POST["lala"])) {
+            $resul = $_POST["accion"];
+            $user = $_POST["lala"];
+            $this->db->select("nick");
+            $this->db->from("usuarios");
+            $this->db->where('token', $user);
+            $query = $this->db->get();
+            foreach ($query->result() as $row) {
+                $usuario = $row->nick;
+            }
+            $iframes = json_decode($resul, true);
+            $laurl = $iframes[0]['url']['href'];
+            unset($iframes[0]);
+            //$prueba = $_SESSION['minick'];//$this->session->userdata('minick');
+            $contador = count($iframes);
+            $data = array(
+                'nick_usuarios' =>$usuario,
+                'contador' => $contador,
+                'url' => $laurl
+            );
 
+
+
+            $this->db->insert('iframes', $data);
+        }else {
+            $correo = $_POST["c"];
+            $pass = $_POST["p"];
+            $variable = $this->Usuario->iniciar_sesion($correo, $pass);
+            if ($variable) {
+
+                $this->db->select("token");
+                $this->db->from("usuarios");
+                $this->db->where('email', $correo);
+                $query = $this->db->get();
+                foreach ($query->result() as $row) {
+                    $nombre = $row->token;
+                }
+            }
+        }
+        file_put_contents(__DIR__ .'/errores.txt', print_r(($correo), true));
+        //file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
+
+        header('Content-type: application/json; charset=utf-8');
+        header ( 'Access-Control-Allow-Origin: *' );
+        header ( 'Access-Control-Allow-Methods: GET, POST' );
+        echo (json_encode($nombre));
         // }
 
 

@@ -9,11 +9,8 @@
 
     <link rel="icon" href="imagenes/mano.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/bootstrap.min.css') ?>" >
-    <script type="text/javascript" src="<?= base_url('js/bootstrap.min.js')
-    /*<link rel="stylesheet" type="text/css" href="<?= base_url('estilo/misitio.css') ?>">*/ ?>">
-
+    <script type="text/javascript" src="<?= base_url('js/bootstrap.min.js')?>">
     </script>
-
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('estilo/misitio.css');?>">
 
 
@@ -30,7 +27,7 @@
 </header>
     <nav>
         <span><?= anchor('Extensiones/descargar', 'Descargas', 'class="enlace1"') ?></span>
-        <span><?= anchor('Extensiones/descargar', 'Recuento', 'class="enlace1"') ?></span>
+        <span><?= anchor('Recuento/recuento', 'Recuento', 'class="enlace1"') ?></span>
     </nav>
 <section>
     Bienvenido a su zona aquí puedes descargar una extensión para google chrome y también puedes dirigirte a ver

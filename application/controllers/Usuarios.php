@@ -39,7 +39,9 @@ class Usuarios extends CI_Controller {
             if ($this->input->post('submit')) {
                 //primero guardo en la variable la respuesta del modelo
                 //Usuario al pulsar el boton submit
-                $variable = $this->Usuario->iniciar_sesion();
+                $correo = $this->input->post('email');
+                $pass = $this->input->post('password');
+                $variable = $this->Usuario->iniciar_sesion($correo, $pass);
                 if ($variable) {
 
                     $this->db->select("nick");

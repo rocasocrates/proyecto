@@ -59,7 +59,7 @@
     </header>
   <nav>
     <span><?= anchor('Extensiones/descargar', 'Descargas', 'class="enlace1"') ?></span>
-    <span><?= anchor('Extensiones/descargar', 'Recuento', 'class="enlace1"') ?></span>
+    <span><?= anchor('Recuento/recuento', 'Recuento', 'class="enlace1"') ?></span>
   </nav>
 </div>
 </body>
