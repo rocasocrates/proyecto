@@ -15,14 +15,15 @@ create table iframes (
     nick_usuarios    varchar(20)    constraint fk_usuarios_iframes references usuarios(nick)
                           on update cascade on delete cascade,
     contador     varchar(150),
-    url          varchar(150)
+    url          varchar(150),
+    fecha        DATE  not null default current_date
 );
 
-insert into usuarios(nick, password, email, token)
+/*insert into usuarios(nick, password, email, token)
 values('admin', 'admin', 'manuel.roca@iesdonana.org', 'asdfghjklnasdfghjklñasdfghjkln'),
       ('pepe', 'pepe', 'manuel.roca@iesdonana.com', 'qwertyuiop'),
       ('juan', 'juan', 'manuel.roca@iesdonana.gob', 'zxcvbnm'),
-      ('manuel','manuel', 'manuel.roca@iesdonana.es', 'qazxswedc');
+      ('manuel','manuel', 'manuel.roca@iesdonana.es', 'qazxswedc');*/
 
 
 

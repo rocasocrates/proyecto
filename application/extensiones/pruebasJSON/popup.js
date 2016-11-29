@@ -22,6 +22,7 @@ var cookie;
     function mostrarlosiframe() {
 
         var idTabla = document.getElementById('losiframe');
+       // var nodo = document.getElementById('losiframe');
         while (idTabla.children.length > 1) {
             idTabla.removeChild(idTabla.children[idTabla.children.length - 1])
         }
@@ -29,12 +30,27 @@ var cookie;
             var row = document.createElement('tr');
             var col1 = document.createElement('td');
 
-            col1.innerText = paralatabla[i];
+           // col1.innerText = paralatabla[i];
+            col1.innerText = paralatabla.length;
             col1.style.whiteSpace = 'nowrap';
 
             row.appendChild(col1);
-            idTabla.appendChild(row);
+            //idTabla.appendChild(row);
+
+            if(idTabla.firstChild != null)
+                idTabla.replaceChild(row, idTabla.firstChild);
+            else
+                idTabla.appendChild(row);
         }
+       /* for (var i = 0; i < paralatabla.length; i++) {
+
+            hijo = document.createTextNode(paralatabla[i]);
+            if(divs[i].firstChild != null)
+                nodo[i].replaceChild(hijo, nodo[i].firstChild);
+            else
+                nodo[i].appendChild(hijo);
+
+        }*/
 
     }
 
@@ -45,13 +61,14 @@ chrome.runtime.onMessage.addListener(
         if(getCookie("token") != "") {
             //document.cookie = "token = holacaracola";
             var dn =  getCookie("token")
+            losiframe.unshift({'nick_usuario': dn});
            // alert(dn);
             //dn = 'juan';
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost/publicidad/index.php/Extensiones/publicidad_consumida',
                 async: true,
-                data: {accion: JSON.stringify(losiframe), lala: dn},
+                data: {accion: JSON.stringify(losiframe)},
                 dataType: 'json'
                 //success: function(response) {
                     //console.log(response);
@@ -65,10 +82,10 @@ chrome.runtime.onMessage.addListener(
             //  }
             //losiframe.unshift({'laprueba':dn});
             losiframe.shift();
+            losiframe.shift();
             for (var index in losiframe) {
                 allpublic.push(losiframe[index]);
             }
-            allpublic.sort();
             paralatabla = allpublic;
 
             mostrarlosiframe();

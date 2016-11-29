@@ -32,7 +32,40 @@
 <span><?= anchor('Extensiones/descargar', 'Recuento', 'class="enlace1"') ?></span>
 </nav>
 <section>
-Bienvenido
+    <?php
+    $user = $this->session->userdata('minick');
+    $res = $this->db->get_where('iframes', array('nick_usuarios'=>$user));
+
+
+    if ($res->num_rows() > 0): ?>
+    <table border="1" style="margin:auto">
+        <thead>
+        <th>Contador</th>
+        <th>url</th>
+        <th>fecha</th>
+        </thead>
+        <tbody><?php
+        foreach ($res->result() as $row) {
+            ?>
+            <tr>
+            <td align="center">
+
+                    <?php echo $row->contador ?>
+            </td>
+            <td align="center">
+
+                <?php echo $row->url ?>
+            </td>
+            <td align="center">
+
+                <?php echo $row->fecha ?>
+            </td>
+
+            </tr><?php
+        }; ?>
+        </tbody>
+    </table><?php
+endif; ?>
 </section>
 
 

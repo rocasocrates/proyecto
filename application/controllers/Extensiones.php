@@ -62,9 +62,12 @@ class Extensiones extends CI_Controller
     function publicidad_consumida()
     {
        //  if(isset($_SESSION['minick'])) {
-        if(isset($_POST["accion"]) && isset($_POST["lala"])) {
+        if(isset($_POST["accion"])) {
             $resul = $_POST["accion"];
-            $user = $_POST["lala"];
+            //$user = $_POST["lala"];
+
+            $iframes = json_decode($resul, true);
+            $user = $iframes[0]['nick_usuario'];
             $this->db->select("nick");
             $this->db->from("usuarios");
             $this->db->where('token', $user);
@@ -72,9 +75,11 @@ class Extensiones extends CI_Controller
             foreach ($query->result() as $row) {
                 $usuario = $row->nick;
             }
-            $iframes = json_decode($resul, true);
-            $laurl = $iframes[0]['url']['href'];
+           // file_put_contents(__DIR__ .'/errores.txt', print_r(($query), true));
+            $laurl = $iframes[1]['url']['href'];
             unset($iframes[0]);
+            unset($iframes[1]);
+            file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
             //$prueba = $_SESSION['minick'];//$this->session->userdata('minick');
             $contador = count($iframes);
             $data = array(
@@ -101,7 +106,7 @@ class Extensiones extends CI_Controller
                 }
             }
         }
-        file_put_contents(__DIR__ .'/errores.txt', print_r(($correo), true));
+        //file_put_contents(__DIR__ .'/errores.txt', print_r(($correo), true));
         //file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
 
         header('Content-type: application/json; charset=utf-8');
