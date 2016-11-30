@@ -75,7 +75,7 @@ class Extensiones extends CI_Controller
             foreach ($query->result() as $row) {
                 $usuario = $row->nick;
             }
-           // file_put_contents(__DIR__ .'/errores.txt', print_r(($query), true));
+            //file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
             $laurl = $iframes[1]['url']['href'];
             unset($iframes[0]);
             unset($iframes[1]);
@@ -89,7 +89,7 @@ class Extensiones extends CI_Controller
             );
 
 
-
+                if($data['contador'] != 0)
             $this->db->insert('iframes', $data);
         }else {
             $correo = $_POST["c"];

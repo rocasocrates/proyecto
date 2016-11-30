@@ -20,14 +20,17 @@
 <?php   $this->load->library('session');?>
 
 <header>
-    <h1>Media<strong>Count</strong></h1>
+    <div id="contenidoheader" class="contenido">
+    <img src="<?php echo base_url('imagenes/logo.png');?>">
 	<p>Usuario : <strong> <?php echo $this->session->userdata('minick'); ?></strong>
         <?= anchor('Usuarios/cerrar_session', 'Cerrar Sesión', 'class="btn btn-primary btn-xs botones" role="button"') ?></p>
-
+    </div>
 </header>
     <nav>
-        <span><?= anchor('Extensiones/descargar', 'Descargas', 'class="enlace1"') ?></span>
+        <div id="contenedornav" class="contenido">
+        <span><?= anchor('#', 'Descargas', 'class="enlace1"') ?></span>
         <span><?= anchor('Recuento/recuento', 'Recuento', 'class="enlace1"') ?></span>
+        </div>
     </nav>
 <section>
     Bienvenido a su zona aquí puedes descargar una extensión para google chrome y también puedes dirigirte a ver

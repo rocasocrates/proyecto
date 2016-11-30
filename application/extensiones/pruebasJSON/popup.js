@@ -2,6 +2,7 @@
 
 var allpublic = [];
 var paralatabla = [];
+var arr = [];
 var interval;
 var contador = 0;
 //delCookie("token");
@@ -87,7 +88,17 @@ chrome.runtime.onMessage.addListener(
                 allpublic.push(losiframe[index]);
             }
             paralatabla = allpublic;
+            for(var i = 0; i < paralatabla.length; i++)
+            {
+                if(arr.indexOf(paralatabla[i])== -1)
+                {
 
+                    arr.push(paralatabla[i]);
+                }else
+                {
+                    paralatabla.splice(i,1);
+                }
+            }
             mostrarlosiframe();
         }else
         {
@@ -187,12 +198,20 @@ chrome.runtime.onMessage.addListener(
             }}
     });
     window.onload = function () {
+           //El getCurrent es para obtener la ventana actual
+       /* chrome.windows.getCurrent(function (currentWindow) {
+            chrome.tabs.query({active: true, windowId: currentWindow.id},
+                function (activeTabs) {
+                    chrome.tabs.executeScript(
+                        activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
 
+                });
+        });*/
         chrome.windows.getCurrent(function (currentWindow) {
             chrome.tabs.query({active: true, windowId: currentWindow.id},
                 function (activeTabs) {
                     chrome.tabs.executeScript(
-                        activeTabs[0].id, {file: 'send_losiframe.js', allFrames: true});
+                        activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
 
                 });
         });

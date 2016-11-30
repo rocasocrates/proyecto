@@ -14,7 +14,7 @@ create table iframes (
     id           bigserial constraint pk_iframes primary key,
     nick_usuarios    varchar(20)    constraint fk_usuarios_iframes references usuarios(nick)
                           on update cascade on delete cascade,
-    contador     varchar(150),
+    contador     NUMERIC (10),
     url          varchar(150),
     fecha        DATE  not null default current_date
 );

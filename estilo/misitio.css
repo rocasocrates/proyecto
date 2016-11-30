@@ -6,16 +6,25 @@
 {
   display: flex;
     flex-direction: column;
-   /* max-width: 1100px;*/
+   /*max-width: 1100px;*/
 
 }
-
-header  {
+header
+{
+    display: flex;
+    width: 100%;
+    background-color: #FF8000;
+}
+.contenido
+{
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+header #contenidoheader {
     display: flex;
     flex-direction: row;
-    max-height: 70px;
     color: #F9FDD8;
-    background-color: #FF8000;
     justify-content: space-between;
      align-items: center;
    /* align-content: space-around;*/
@@ -23,12 +32,20 @@ header  {
     /*border-radius: 30px 30px 0 0;
     border: 2px solid black;*/
     /*order: 1;*/}
-header h1{
-    display: flex;
-    /*border: 1px solid red;*/
-    font-size: 30px;
-   padding-left: 30px;
+header #contenidoheader img
+{
+    width: 300px;
+    padding: 0 10px;
+    margin-top: 10px;
 }
+/*#contenidoheader
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+}*/
 header form
 {
     display: flex;
@@ -44,6 +61,12 @@ header p
 }
 /*El nav*/
 #main nav
+{
+    display: flex;
+    width: 100%;
+    background-color: #FF8000;
+}
+#main nav #contenedornav
 {
     display: flex;
     justify-content:flex-end;
@@ -116,4 +139,36 @@ form div
 .btn-ttc:hover {
     background-position: 0 -15px;
 }
+table, td, th
+{
+    border: 1px solid black;
+    margin: auto;
+    text-align: center;
 
+}
+table
+{
+    margin-top: 20px;
+}
+th
+{
+    color: white;
+    padding: 10px;
+    background-color: #5A5D5E;
+}
+td
+{
+    padding: 10px;
+}
+@media screen and (max-width: 1024px)
+{
+
+}
+@media screen and (max-width: 768px)
+{
+
+}
+@media screen and (max-width: 425px)
+{
+
+}

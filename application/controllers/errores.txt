@@ -1,3 +1,20 @@
 Array
 (
+    [2] => google_osd_static_frame_3596895963288
+    [3] => google_osd_static_frame_3596895963288
+    [4] => google_osd_static_frame_3596895963288
+    [5] => google_osd_static_frame_3596895963288
+    [6] => google_osd_static_frame_3596895963288
+    [7] => google_osd_static_frame_3596895963288
+    [8] => google_osd_static_frame_3596895963288
+    [9] => google_ads_iframe_/5666/es_meneame/home/atf_1
+    [10] => google_ads_iframe_/5666/es_meneame/home/btf_2
+    [11] => google_ads_iframe_/5666/es_meneame/home/atf_0
+    [12] => google_ads_iframe_/5666/es_meneame/home/atf_0__hidden__
+    [13] => google_ads_iframe_/5666/es_meneame/home/btf_3
+    [14] => google_ads_iframe_/5666/es_meneame/home/btf_1
+    [15] => google_ads_iframe_/5666/es_meneame/home/btf_0
+    [16] => google_ads_iframe_/5666/es_meneame/home/btf_0
+    [17] => google_osd_static_frame_3596895963288
+    [18] => google_osd_static_frame_3596895963288
 )

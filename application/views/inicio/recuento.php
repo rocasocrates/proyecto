@@ -21,24 +21,30 @@
     <div id="main">
     <?php   $this->load->library('session');?>
 
-    <header>
-    <h1>Media<strong>Count</strong></h1>
-    <p>Usuario : <strong> <?php echo $this->session->userdata('minick'); ?></strong>
-<?= anchor('Usuarios/cerrar_session', 'Cerrar Sesión', 'class="btn btn-primary btn-xs botones" role="button"') ?></p>
 
-</header>
-<nav>
-<span><?= anchor('Extensiones/descargar', 'Descargas', 'class="enlace1"') ?></span>
-<span><?= anchor('Extensiones/descargar', 'Recuento', 'class="enlace1"') ?></span>
-</nav>
+        <header>
+            <div id="contenidoheader" class="contenido">
+                <img src="<?= base_url('imagenes/logo.png')?>">
+                <p>Usuario : <strong> <?php echo $this->session->userdata('minick'); ?></strong>
+                    <?= anchor('Usuarios/cerrar_session', 'Cerrar Sesión', 'class="btn btn-primary btn-xs botones" role="button"') ?></p>
+            </div>
+        </header>
+        <nav>
+            <div id="contenedornav" class="contenido">
+                <span><?= anchor('#', 'Descargas', 'class="enlace1"') ?></span>
+                <span><?= anchor('Recuento/recuento', 'Recuento', 'class="enlace1"') ?></span>
+            </div>
+        </nav>
 <section>
     <?php
     $user = $this->session->userdata('minick');
-    $res = $this->db->get_where('iframes', array('nick_usuarios'=>$user));
+    if($user != null)
+    {
+    $res = $this->db->select('url, fecha, sum(contador) as contador', false)->from('iframes')->group_by(array("url", "fecha"))->where(array('nick_usuarios'=>$user))->get();
 
 
     if ($res->num_rows() > 0): ?>
-    <table border="1" style="margin:auto">
+    <table>
         <thead>
         <th>Contador</th>
         <th>url</th>
@@ -48,15 +54,15 @@
         foreach ($res->result() as $row) {
             ?>
             <tr>
-            <td align="center">
+            <td>
 
                     <?php echo $row->contador ?>
             </td>
-            <td align="center">
+            <td>
 
                 <?php echo $row->url ?>
             </td>
-            <td align="center">
+            <td>
 
                 <?php echo $row->fecha ?>
             </td>
@@ -65,7 +71,7 @@
         }; ?>
         </tbody>
     </table><?php
-endif; ?>
+endif; }else redirect('Usuarios/index')?>
 </section>
 
 
