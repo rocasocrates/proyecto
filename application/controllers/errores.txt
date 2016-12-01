@@ -1,20 +1,5 @@
 Array
 (
-    [2] => google_ads_iframe_/99071977/mun/portada_0
-    [3] => google_ads_iframe_/99071977/mun/portada_0__hidden__
-    [4] => google_ads_iframe_/99071977/mun/portada_4
-    [5] => google_ads_iframe_/99071977/mun/portada_5
-    [6] => google_ads_iframe_/99071977/mun/portada_1
-    [7] => google_ads_iframe_/99071977/mun/portada_2
-    [8] => google_ads_iframe_/99071977/mun/portada_13
-    [9] => google_ads_iframe_/99071977/mun/portada_3
-    [10] => google_ads_iframe_/99071977/mun/portada_10
-    [11] => google_ads_iframe_/99071977/mun/portada_7
-    [12] => google_ads_iframe_/99071977/mun/portada_15
-    [13] => google_ads_iframe_/99071977/mun/portada_6
-    [14] => google_ads_iframe_/99071977/mun/portada_8
-    [15] => google_ads_iframe_/99071977/mun/portada_9
-    [16] => google_ads_iframe_/99071977/mun/portada_11
-    [17] => google_ads_iframe_/99071977/mun/portada_12
-    [18] => google_ads_iframe_/99071977/mun/portada_14
+    [2] => google_ads_iframe_/87824813/hola/home_0
+    [3] => google_ads_iframe_/87824813/hola/home_2
 )

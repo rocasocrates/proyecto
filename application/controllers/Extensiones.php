@@ -6,6 +6,7 @@
  * Time: 17:29
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /*class Usuario{
     public $categorias;
 
@@ -26,11 +27,11 @@ class Extensiones extends CI_Controller
         //$query = $this->db->select("email");
         //$query = $this->db->get("usuarios");
         //$filename = base_url('extensiones/pruebasJSON.zip');
-       // $str = "$query";
-       // $bz = bzopen($filename, "w");
-       // bzwrite($bz, $str);
-      //  bzclose($bz);
-       // $sesion = $_SESSION['minick'];
+        // $str = "$query";
+        // $bz = bzopen($filename, "w");
+        // bzwrite($bz, $str);
+        //  bzclose($bz);
+        // $sesion = $_SESSION['minick'];
         //file_put_contents('', print_r("", true));
 
         /*Aqui empiezo a comprimir los archivos*/
@@ -61,8 +62,8 @@ class Extensiones extends CI_Controller
 
     function publicidad_consumida()
     {
-       //  if(isset($_SESSION['minick'])) {
-        if(isset($_POST["accion"])) {
+        //  if(isset($_SESSION['minick'])) {
+        if (isset($_POST["accion"])) {
             $resul = $_POST["accion"];
             //$user = $_POST["lala"];
 
@@ -82,18 +83,18 @@ class Extensiones extends CI_Controller
 
             //$prueba = $_SESSION['minick'];//$this->session->userdata('minick');
             $iframes = array_unique($iframes);
-            file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
+            file_put_contents(__DIR__ . '/errores.txt', print_r(($iframes), true));
             $contador = count($iframes);
             $data = array(
-                'nick_usuarios' =>$usuario,
+                'nick_usuarios' => $usuario,
                 'contador' => $contador,
                 'url' => $laurl
             );
 
 
-                if($data['contador'] != 0)
-            $this->db->insert('iframes', $data);
-        }else {
+            if ($data['contador'] != 0)
+                $this->db->insert('iframes', $data);
+        } else {
             $correo = $_POST["c"];
             $pass = $_POST["p"];
             $variable = $this->Usuario->iniciar_sesion($correo, $pass);
@@ -112,14 +113,14 @@ class Extensiones extends CI_Controller
         //file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
 
         header('Content-type: application/json; charset=utf-8');
-        header ( 'Access-Control-Allow-Origin: *' );
-        header ( 'Access-Control-Allow-Methods: GET, POST' );
-        echo (json_encode($nombre));
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        echo(json_encode($nombre));
         // }
-
 
 
     }
 
 }
+
 ?>
