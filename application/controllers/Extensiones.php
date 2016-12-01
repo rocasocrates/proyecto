@@ -79,8 +79,10 @@ class Extensiones extends CI_Controller
             $laurl = $iframes[1]['url']['href'];
             unset($iframes[0]);
             unset($iframes[1]);
-            file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
+
             //$prueba = $_SESSION['minick'];//$this->session->userdata('minick');
+            $iframes = array_unique($iframes);
+            file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
             $contador = count($iframes);
             $data = array(
                 'nick_usuarios' =>$usuario,

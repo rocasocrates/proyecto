@@ -2,19 +2,19 @@
 
 var allpublic = [];
 var paralatabla = [];
+//Array.prototype.unique=function(a){
+   // return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
+//});
 var arr = [];
 var interval;
 var contador = 0;
-//delCookie("token");
-   //setCookie("user", "manuel");
-   // dn =  getCookie("user");
+
 var login;
 var pass;
 var pruebaser = "" ;
-//setCookie("dni", "pepe", 2);
 
 var cookie;
-//var url = window.location;
+
 //Mostrar todos los iframes visibles.
 /*la url*/
 /*para recuperar la capa de fondo*/
@@ -61,10 +61,8 @@ chrome.runtime.onMessage.addListener(
     function (losiframe) {
         if(getCookie("token") != "") {
             //document.cookie = "token = holacaracola";
-            var dn =  getCookie("token")
+            var dn =  getCookie("token");
             losiframe.unshift({'nick_usuario': dn});
-           // alert(dn);
-            //dn = 'juan';
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost/publicidad/index.php/Extensiones/publicidad_consumida',
@@ -82,23 +80,21 @@ chrome.runtime.onMessage.addListener(
             //      alert("hola");
             //  }
             //losiframe.unshift({'laprueba':dn});
-            losiframe.shift();
-            losiframe.shift();
-            for (var index in losiframe) {
-                allpublic.push(losiframe[index]);
-            }
-            paralatabla = allpublic;
-            for(var i = 0; i < paralatabla.length; i++)
-            {
-                if(arr.indexOf(paralatabla[i])== -1)
-                {
 
-                    arr.push(paralatabla[i]);
-                }else
-                {
-                    paralatabla.splice(i,1);
+            losiframe.shift();
+            losiframe.shift();
+
+
+            for (var index in losiframe) {
+                if(allpublic.indexOf(losiframe[index]) == -1) {
+                    allpublic.push(losiframe[index]);
                 }
             }
+
+            alert(allpublic);
+
+            paralatabla = allpublic;
+
             mostrarlosiframe();
         }else
         {
@@ -192,9 +188,6 @@ chrome.runtime.onMessage.addListener(
 
                 contador++;
 
-                //aqui hacer un ajax para enviar el formulario y recojer la respuesta y guardarla en una cookie
-                //darle la vuelta y quitarle el else o poner en un do while
-                //setCookie("token", "zxcvbnm");
             }}
     });
     window.onload = function () {
