@@ -27,7 +27,8 @@
     "tabs",
     "bookmarks",
     "http://*/",
-    "https://*/"
+    "https://*/",
+    "webNavigation"
   ]
 }
 

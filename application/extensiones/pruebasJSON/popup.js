@@ -171,7 +171,7 @@ chrome.runtime.onMessage.addListener(
             }
         }
     });
-window.onload = function () {
+$(document).ready(function (){
     //El getCurrent es para obtener la ventana actual
     /* chrome.windows.getCurrent(function (currentWindow) {
      chrome.tabs.query({active: true, windowId: currentWindow.id},
@@ -190,4 +190,4 @@ window.onload = function () {
             });
     });
 
-};
+});

@@ -55,7 +55,7 @@
 
     </div>
 </div>
-<?= form_submit('submit', 'submit', 'class="btn btn-success"') ?>
+<?= form_submit('submit', 'Enviar', 'class="btn btn-success"', array('id' => 'envio')) ?>
 <?= form_close() ?>
 <?= validation_errors() ?>
 
