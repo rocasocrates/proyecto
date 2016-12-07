@@ -82,7 +82,7 @@ class Usuarios extends CI_Controller {
 			$this->form_validation->set_rules('repassword', 'RePassword', 'required|trim|matches[password]');
 			$this->form_validation->set_message('required', 'El campo %s Es obligatorio');
 			$this->form_validation->set_message('existe_nick', 'El  %s Ya existe');
-			$this->form_validation->set_message('valid_email', 'El  %s no es valido');
+			$this->form_validation->set_message('valid_email', 'El  %s  es valido');
 			$this->form_validation->set_message('existe_email', 'El  %s Ya existe');
 			$this->form_validation->set_message('matches', 'El  %s no coincide');
 			

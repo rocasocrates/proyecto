@@ -9,14 +9,19 @@
     <meta name="robots" content="index, follow">
 
     <link rel="icon" href="imagenes/mano.png" type="image/png" sizes="16x16">
+
     <link rel="stylesheet" type="text/css"
-          href="<?= base_url('css/bootstrap.min.css') ?>">
-    <script type="text/javascript" src="<?= base_url('js/bootstrap.min.js') ?>">
-
+          href="<?php echo base_url('css/bootstrap.min.css'); ?>">
+   
+    <script type="text/javascript" src="http://localhost/publicidad/javascript/validarFormulario.js">
     </script>
-    <link rel="stylesheet" type="text/css" href="<?= base_url('estilo/misitio.css') ?>">
 
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('estilo/misitio.css'); ?>">
+    <script type="text/javascript" src="http://localhost/publicidad/javascript/jquery-1.12.1.min.js">
+    </script>
+    <!-- <script type="text/javascript" src="<?php //echo  base_url('js/bootstrap.min.js'); ?>">
 
+   </script>-->
 </head>
 <body>
 <header>
@@ -30,34 +35,34 @@
     <?= form_label('Nick:', 'nick', array('class' => 'col-lg-2 control-label')) ?>
     <div class="col-lg-10">
         <?= form_input('nick', set_value('nick', '', FALSE),
-            'id="nick" class="form-control"') ?>
+            'id="nickr" class="form-control"') ?>
     </div>
 </div>
 <div class="form-group">
     <?= form_label('Email:', 'email', array('class' => 'col-lg-2 control-label')) ?>
     <div class="col-lg-10">
         <?= form_input('email', set_value('email', '', FALSE),
-            'id="email" class="form-control"') ?>
+            'id="emailr" class="form-control"') ?>
     </div>
 </div>
 <div class="form-group">
     <?= form_label('Password:', 'password', array('class' => 'col-lg-2 control-label')) ?>
     <div class="col-lg-10">
         <?= form_input('password', set_value('password', '', FALSE),
-            'id="password" class="form-control"') ?>
+            'id="passwordr" class="form-control"') ?>
     </div>
 </div>
 <div class="form-group">
     <?= form_label('Confirme Password:', 'repassword', array('class' => 'col-lg-2 control-label')) ?>
     <div class="col-lg-10">
         <?= form_input('repassword', set_value('repassword', '', FALSE),
-            'id="repassword" class="form-control"') ?>
+            'id="repasswordr" class="form-control"') ?>
 
     </div>
 </div>
-<?= form_submit('submit', 'Enviar', 'class="btn btn-success"', array('id' => 'envio')) ?>
+<?= form_submit('submit', 'Enviar', 'class="btn btn-success" id="envio"') ?>
 <?= form_close() ?>
 <?= validation_errors() ?>
-
+<p id="error">gggggggg</p>
 </body>
 </html>

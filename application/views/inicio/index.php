@@ -10,11 +10,11 @@
 
   <link rel="icon" href="imagenes/mano.png" type="image/png" sizes="16x16">
   <link rel="stylesheet" type="text/css"
-        href="<?= base_url('css/bootstrap.min.css') ?>" >
-  <script type="text/javascript" src="<?= base_url('js/bootstrap.min.js') ?>">
+        href="<?php echo base_url('css/bootstrap.min.css') ?>" >
+  <script type="text/javascript" src="<?php echo base_url('js/bootstrap.min.js') ?>">
 
   </script>
-  <link rel="stylesheet" type="text/css" href="<?= base_url('estilo/misitio.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('estilo/misitio.css')?>">
 
 
 </head>
