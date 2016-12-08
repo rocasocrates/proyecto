@@ -68,4 +68,5 @@
 <?= form_close() ?>
 <?= validation_errors() ?>
 </body>
+<?php include 'footer.php'; ?>
 </html>

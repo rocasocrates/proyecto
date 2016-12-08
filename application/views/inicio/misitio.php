@@ -7,5 +7,6 @@
 	<p> <?= anchor('Extensiones/descargar', 'Descargar') ?></p>
 
 </div>
+<?php include 'footer.php'; ?>
 </body>
 </html>

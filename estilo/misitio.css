@@ -176,6 +176,42 @@ td
 {
     padding: 10px;
 }
+/*El pie de pagina */
+footer
+{
+    display: flex;
+    flex-direction:row-reverse;
+    justify-content:space-around;
+    background-color:#FF8000;
+    align-items: flex-end;
+
+
+}
+footer > section
+{
+    display: flex;
+    flex-direction:column;
+    align-items: flex-end;
+    margin-right: 30px;
+
+}
+footer > section > div
+{
+    display: flex;
+    flex-direction:row;
+
+}
+footer > section > div > img
+{
+    margin: 5px;
+}
+
+footer > p
+{
+    text-align: center;
+    align-content: flex-end;
+}
+/*Fin del pie de pagina */
 @media screen and (max-width: 1024px)
 {
 
