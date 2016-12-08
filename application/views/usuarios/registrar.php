@@ -37,6 +37,7 @@
         <?= form_input('nick', set_value('nick', '', FALSE),
             'id="nickr" class="form-control"') ?>
     </div>
+    <p id="errornick"></p>
 </div>
 <div class="form-group">
     <?= form_label('Email:', 'email', array('class' => 'col-lg-2 control-label')) ?>
@@ -44,6 +45,7 @@
         <?= form_input('email', set_value('email', '', FALSE),
             'id="emailr" class="form-control"') ?>
     </div>
+    <p id="erroremail"></p>
 </div>
 <div class="form-group">
     <?= form_label('Password:', 'password', array('class' => 'col-lg-2 control-label')) ?>
@@ -51,6 +53,7 @@
         <?= form_input('password', set_value('password', '', FALSE),
             'id="passwordr" class="form-control"') ?>
     </div>
+    <p id="errorpassword"></p>
 </div>
 <div class="form-group">
     <?= form_label('Confirme Password:', 'repassword', array('class' => 'col-lg-2 control-label')) ?>
@@ -59,10 +62,10 @@
             'id="repasswordr" class="form-control"') ?>
 
     </div>
+    <p id="errorrepassword"></p>
 </div>
 <?= form_submit('submit', 'Enviar', 'class="btn btn-success" id="envio"') ?>
 <?= form_close() ?>
 <?= validation_errors() ?>
-<p id="error">gggggggg</p>
 </body>
 </html>
