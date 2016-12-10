@@ -13,7 +13,8 @@ header
 {
     display: flex;
     width: 100%;
-    background-color: #FF8000;
+    /*background-color: #17A05D;*/
+    background-color: #FFCD41;
 }
 .contenido
 {
@@ -64,14 +65,15 @@ header p
 {
     display: flex;
     width: 100%;
-    background-color: #FF8000;
+    /*background-color: #17A05D;*/
+background-color: #FFCD41;
 }
 #main nav #contenedornav
 {
     display: flex;
     justify-content:flex-end;
     justify-items: center;
-    background-color: #FF8000;
+    background-color: #FFCD41;
     max-height:35px;
     height: 35px;
     color: white;
@@ -176,13 +178,21 @@ td
 {
     padding: 10px;
 }
+article
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 /*El pie de pagina */
 footer
 {
     display: flex;
     flex-direction:row-reverse;
     justify-content:space-around;
-    background-color:#FF8000;
+    background-color:#FFCD41;
     align-items: flex-end;
 
 

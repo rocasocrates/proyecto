@@ -8,16 +8,16 @@
     <meta name="keywords" content="extendiones, publicidad">
     <meta name="robots" content="index, follow">
 
-    <link rel="icon" href="imagenes/mano.png" type="image/png" sizes="16x16">
+    <!--<link rel="icon" href="imagenes/mano.png" type="image/png" sizes="16x16">-->
 
     <link rel="stylesheet" type="text/css"
           href="<?php echo base_url('css/bootstrap.min.css'); ?>">
    
-    <script type="text/javascript" src="http://localhost/publicidad/javascript/validarFormulario.js">
+    <script type="text/javascript" src="<?php echo base_url('javascript/validarFormulario.js'); ?>">
     </script>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('estilo/misitio.css'); ?>">
-    <script type="text/javascript" src="http://localhost/publicidad/javascript/jquery-1.12.1.min.js">
+    <link rel="stylesheet" type="text/css" href="<?php  echo base_url('estilo/misitio.css');?>">
+    <script type="text/javascript" src="<?php  echo base_url('javascript/jquery-1.12.1.min.js');?>">
     </script>
     <!-- <script type="text/javascript" src="<?php //echo  base_url('js/bootstrap.min.js'); ?>">
 
@@ -67,6 +67,16 @@
 <?= form_submit('submit', 'Enviar', 'class="btn btn-success" id="envio"') ?>
 <?= form_close() ?>
 <?= validation_errors() ?>
+<footer role="contentinfo">
+    <section>
+        <div>
+            <img src="<?php echo base_url('imagenes/facebook.gif');?>"/>
+            <img src="<?php echo base_url('imagenes/twitter.gif');?>"/>
+        </div>
+
+    </section>
+    <p>&copy; 2016 " www.mediacount.es" || Todos los derechos reservados </p>
+    <p></p>
+</footer>
 </body>
-<?php include 'footer.php'; ?>
 </html>

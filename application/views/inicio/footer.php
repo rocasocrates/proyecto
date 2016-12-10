@@ -9,8 +9,8 @@
 <footer role="contentinfo">
             <section>
                     <div>
-                        <img src="http://localhost/publicidad/imagenes/facebook.gif" alt="facebook" title="facebook"/>
-                        <img src="http://localhost/publicidad/imagenes/twitter.gif" alt="twitter" title="twitter"/>
+                        <img src="<?php echo base_url('imagenes/facebook.gif')?>" alt="facebook" title="facebook"/>
+                        <img src="<?php echo base_url('imagenes/twitter.gif')?>" alt="twitter" title="twitter"/>
                     </div>
 
             </section>
