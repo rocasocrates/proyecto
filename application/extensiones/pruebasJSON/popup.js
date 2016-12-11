@@ -80,11 +80,13 @@ function mostrarlosiframe() {
 
 // Configurar los controladores de eventos e inyectar send_losiframe.js en todos los fotogramas del activo
 // Pestaña.1479729061
+//chrome.webNavigation.onCompleted.addListener(function(){
 chrome.runtime.onMessage.addListener(
     function (losiframe) {
         if (getCookie("token") != "") {
             //document.cookie = "token = holacaracola";
             var dn = getCookie("token");
+            //alert(dn);
             losiframe.unshift({'nick_usuario': dn});
             $.ajax({
                 type: 'POST',
@@ -114,137 +116,140 @@ chrome.runtime.onMessage.addListener(
                 }
             }
 
-            alert(allpublic);
+            //alert(allpublic);
 
             paralatabla = allpublic;
 
             mostrarlosiframe();
         } else {
-           // if (contador <= 0) {
-            do{
-                var body = document.getElementById('cuerpo');
-                /*correo*/
-                campocorreo = document.createElement('input');
-                labelcorreo = document.createElement('label');
-                nodocorreo = document.createTextNode('Correo');
-                labelcorreo.appendChild(nodocorreo);
-                labelcorreo.style.marginRight = '29px';
-                body.appendChild(labelcorreo);
-                campocorreo.setAttribute('type', 'email');
-                campocorreo.setAttribute('id', 'email');
-                campocorreo.style.marginBottom = '10px';
-                body.appendChild(campocorreo);
-                parrafocorreo = document.createElement('p');
-                parrafocorreo.setAttribute('id', 'erroremail');
-                body.appendChild(parrafocorreo);
-                /*Aqui ponemos la validación del campo correo*/
-                document.getElementById('email').addEventListener('blur',function (event) {
-                    var evento = event || window.event;
-                    try {
-                        validar_email(document.getElementById('email').value);
+            //if (contador <= 0) {
+                do {
+                    var body = document.getElementById('cuerpo');
+                    /*correo*/
+                    campocorreo = document.createElement('input');
+                    labelcorreo = document.createElement('label');
+                    nodocorreo = document.createTextNode('Correo');
+                    labelcorreo.appendChild(nodocorreo);
+                    labelcorreo.style.marginRight = '29px';
+                    body.appendChild(labelcorreo);
+                    campocorreo.setAttribute('type', 'email');
+                    campocorreo.setAttribute('id', 'email');
+                    campocorreo.style.marginBottom = '10px';
+                    body.appendChild(campocorreo);
+                    parrafocorreo = document.createElement('p');
+                    parrafocorreo.setAttribute('id', 'erroremail');
+                    body.appendChild(parrafocorreo);
+                    /*Aqui ponemos la validación del campo correo*/
+                    document.getElementById('email').addEventListener('blur', function (event) {
+                        var evento = event || window.event;
+                        try {
+                            validar_email(document.getElementById('email').value);
 
-                    } catch (error) {
-                        evento.preventDefault();
-                        document.getElementById('erroremail').innerHTML = error;
-                        document.getElementById('erroremail').style.visibility = 'visible';
-                        document.getElementById('erroremail').style.color = '#BB0E0D';
-                        cerrojo = true;
-                    }
-                });
-                /*fin de la validación*/
-                /*password*/
-                campopass = document.createElement('input');
-                labelpass = document.createElement('label');
-                nodopass = document.createTextNode('Password');
-                labelpass.appendChild(nodopass);
-                labelpass.style.marginRight = '15px';
-                body.appendChild(labelpass);
-                campopass.setAttribute('type', 'password');
-                campopass.setAttribute('id', 'password');
-                campopass.style.marginBottom = '10px';
-                body.appendChild(campopass);
-                parrafopassword = document.createElement('p');
-                parrafopassword.setAttribute('id', 'errorpassword');
-                body.appendChild(parrafopassword);
-                /*validar el password*/
-                document.getElementById('password').addEventListener('blur',function (event) {
-                    var evento = event || window.event;
-                    try {
-                        validar_password(document.getElementById('password').value);
-                    } catch (error) {
-                        evento.preventDefault();
-                        document.getElementById('errorpassword').innerHTML = error;
-                        document.getElementById('errorpassword').style.visibility = 'visible';
-                        document.getElementById('errorpassword').style.color = '#BB0E0D';
-                        cerrojo = true;
-                    }
-                });
-                /*fin de validar el password*/
-                /*submit*/
-                boton = document.createElement('button');
-                boton.addEventListener("click", enviar);
-                nodoboton = document.createTextNode('empezar');
-                boton.appendChild(nodoboton);
-                boton.style.marginLeft = '70px';
-                body.appendChild(boton);
+                        } catch (error) {
+                            evento.preventDefault();
+                            document.getElementById('erroremail').innerHTML = error;
+                            document.getElementById('erroremail').style.visibility = 'visible';
+                            document.getElementById('erroremail').style.color = '#BB0E0D';
+                            cerrojo = true;
+                        }
+                    });
+                    /*fin de la validación*/
+                    /*password*/
+                    campopass = document.createElement('input');
+                    labelpass = document.createElement('label');
+                    nodopass = document.createTextNode('Password');
+                    labelpass.appendChild(nodopass);
+                    labelpass.style.marginRight = '15px';
+                    body.appendChild(labelpass);
+                    campopass.setAttribute('type', 'password');
+                    campopass.setAttribute('id', 'password');
+                    campopass.style.marginBottom = '10px';
+                    body.appendChild(campopass);
+                    parrafopassword = document.createElement('p');
+                    parrafopassword.setAttribute('id', 'errorpassword');
+                    body.appendChild(parrafopassword);
+                    /*validar el password*/
+                    document.getElementById('password').addEventListener('blur', function (event) {
+                        var evento = event || window.event;
+                        try {
+                            validar_password(document.getElementById('password').value);
+                        } catch (error) {
+                            evento.preventDefault();
+                            document.getElementById('errorpassword').innerHTML = error;
+                            document.getElementById('errorpassword').style.visibility = 'visible';
+                            document.getElementById('errorpassword').style.color = '#BB0E0D';
+                            cerrojo = true;
+                        }
+                    });
+                    /*fin de validar el password*/
+                    /*submit*/
+                    boton = document.createElement('button');
+                    boton.addEventListener("click", enviar);
+                    nodoboton = document.createTextNode('empezar');
+                    boton.appendChild(nodoboton);
+                    boton.style.marginLeft = '70px';
+                    body.appendChild(boton);
 
-                /*aqui empiezo el ajax de libros web*/
-                var READY_STATE_COMPLETE = 4;
-                var peticion_http = null;
+                    /*aqui empiezo el ajax de libros web*/
+                    var READY_STATE_COMPLETE = 4;
+                    var peticion_http = null;
 
-                function inicializa_xhr() {
-                    if (window.XMLHttpRequest) {
-                        return new XMLHttpRequest();
-                    }
-                    else if (window.ActiveXObject) {
-                        return new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                }
-
-                function crea_query_string() {
-                    var correo = campocorreo.value;
-                    var contrasena = campopass.value;
-
-                    return "c=" + encodeURIComponent(correo) +
-                        "&p=" + encodeURIComponent(contrasena);
-                }
-
-                function enviar() {
-                    peticion_http = inicializa_xhr();
-                    if (peticion_http) {
-                        peticion_http.onreadystatechange = procesaRespuesta;
-                        peticion_http.open("POST", "http://localhost/publicidad/index.php/Extensiones/publicidad_consumida", true);
-
-                        peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        var query_string = crea_query_string();
-                        peticion_http.send(query_string);
-                    }
-                }
-
-                function procesaRespuesta() {
-                    if (peticion_http.readyState == READY_STATE_COMPLETE) {
-                        if (peticion_http.status == 200) {
-                            cookie = peticion_http.responseText;
-                            cookie = JSON.parse(cookie);
-                             if(cookie == null)
-                             {
-                                 cerrojo = true;
-                             }else {
-                                 cookie = cookie.substring(1, cookie.length - 1);
-                                 document.cookie = "token = " + cookie;
-                             }
+                    function inicializa_xhr() {
+                        if (window.XMLHttpRequest) {
+                            return new XMLHttpRequest();
+                        }
+                        else if (window.ActiveXObject) {
+                            return new ActiveXObject("Microsoft.XMLHTTP");
                         }
                     }
-                }
 
-                /*aqui termina el ajax de libros web*/
-                // }
+                    function crea_query_string() {
+                        var correo = campocorreo.value;
+                        var contrasena = campopass.value;
 
-                //contador++;
+                        return "c=" + encodeURIComponent(correo) +
+                            "&p=" + encodeURIComponent(contrasena);
+                    }
 
-            }while (cerrojo);
-        }
+                    function enviar() {
+                        peticion_http = inicializa_xhr();
+                        if (peticion_http) {
+                            peticion_http.onreadystatechange = procesaRespuesta;
+                            peticion_http.open("POST", "http://localhost/publicidad/index.php/Extensiones/publicidad_consumida", true);
+
+                            peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            var query_string = crea_query_string();
+                            peticion_http.send(query_string);
+                        }
+                    }
+
+                    function procesaRespuesta() {
+                        if (peticion_http.readyState == READY_STATE_COMPLETE) {
+                            if (peticion_http.status == 200) {
+                                cookie = peticion_http.responseText;
+                                cookie = JSON.parse(cookie);
+                                //alert(cookie);
+                                if (cookie == null) {
+                                    cerrojo = true;
+                                } else {
+                                    cookie = cookie.substring(0, cookie.length);
+                                    cookie = cookie.trim();
+                                    document.cookie = "token = " + cookie;
+                                }
+                            }
+                        }
+                    }
+
+                    /*aqui termina el ajax de libros web*/
+                    // }
+
+
+                } while (cerrojo);
+              //  contador++;
+            }
+        //}
     });
+//});
 $(document).ready(function (){
     //El getCurrent es para obtener la ventana actual
     /* chrome.windows.getCurrent(function (currentWindow) {
@@ -260,7 +265,7 @@ $(document).ready(function (){
         chrome.tabs.query({active: true, windowId: currentWindow.id},
             function (activeTabs) {
                 chrome.tabs.executeScript(
-                    activeTabs[-1].id, {file: 'send_losiframe.js', allFrames: false});
+                    activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
 
             });
     });

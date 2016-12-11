@@ -76,14 +76,14 @@ class Extensiones extends CI_Controller
             foreach ($query->result() as $row) {
                 $usuario = $row->nick;
             }
-            //file_put_contents(__DIR__ .'/errores.txt', print_r(($iframes), true));
+            //file_put_contents(__DIR__ .'/errores.txt', print_r(($user), true));
             $laurl = $iframes[1]['url']['href'];
             unset($iframes[0]);
             unset($iframes[1]);
 
             //$prueba = $_SESSION['minick'];//$this->session->userdata('minick');
             $iframes = array_unique($iframes);
-            file_put_contents(__DIR__ . '/errores.txt', print_r(($iframes), true));
+           // file_put_contents(__DIR__ . '/errores.txt', print_r(($iframes), true));
             $contador = count($iframes);
             $data = array(
                 'nick_usuarios' => $usuario,

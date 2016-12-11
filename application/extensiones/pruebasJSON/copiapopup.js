@@ -1,27 +1,48 @@
-/**
- * Created by roca on 30/11/16.
- */
-
-
 var allpublic = [];
 var paralatabla = [];
+//Array.prototype.unique=function(a){
+// return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
+//});
+var arr = [];
 var interval;
 var contador = 0;
-//delCookie("token");
-//setCookie("user", "manuel");
-// dn =  getCookie("user");
+
 var login;
 var pass;
-var pruebaser = "" ;
-//setCookie("dni", "pepe", 2);
+var pruebaser = "";
 
 var cookie;
-//var url = window.location;
+var cerrojo = false;
 //Mostrar todos los iframes visibles.
 /*la url*/
 /*para recuperar la capa de fondo*/
 
 
+function validar_email(email) {
+    var elementoemail = document.getElementById('erroremail');
+    if(!/^.*@.*\..*$/.test(email)) {
+        throw new Error("Email incorrecto. Debe ser del tipo xxx@yyy.zzz");
+    }else
+    {
+        if(elementoemail.childNodes != null)
+        {
+            elementoemail.style.visibility = 'hidden';
+        }
+    }
+}
+function validar_password(password) {
+    var elementopassword = document.getElementById('errorpassword');
+    if(!/^\w{8,10}$/.test(password)) {
+        throw new Error("Password incorrecta. Debe tener entre 8 y 10 caracteres.");
+    }else
+    {
+        if(elementopassword.childNodes != null)
+        {
+            elementopassword.style.visibility = 'hidden';
+        }
+    }
+
+}
 function mostrarlosiframe() {
 
     var idTabla = document.getElementById('losiframe');
@@ -40,7 +61,7 @@ function mostrarlosiframe() {
         row.appendChild(col1);
         //idTabla.appendChild(row);
 
-        if(idTabla.firstChild != null)
+        if (idTabla.firstChild != null)
             idTabla.replaceChild(row, idTabla.firstChild);
         else
             idTabla.appendChild(row);
@@ -61,12 +82,11 @@ function mostrarlosiframe() {
 // Pestaña.1479729061
 chrome.runtime.onMessage.addListener(
     function (losiframe) {
-        if(getCookie("token") != "") {
+        if (getCookie("token") != "") {
             //document.cookie = "token = holacaracola";
-            var dn =  getCookie("token")
+            var dn = getCookie("token");
+            //alert(dn);
             losiframe.unshift({'nick_usuario': dn});
-            // alert(dn);
-            //dn = 'juan';
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost/publicidad/index.php/Extensiones/publicidad_consumida',
@@ -84,66 +104,100 @@ chrome.runtime.onMessage.addListener(
             //      alert("hola");
             //  }
             //losiframe.unshift({'laprueba':dn});
+
             losiframe.shift();
             losiframe.shift();
+
+
             for (var index in losiframe) {
-                allpublic.push(losiframe[index]);
+                if (allpublic.indexOf(losiframe[index]) == -1) {
+                    allpublic.push(losiframe[index]);
+                }
             }
+
+            //alert(allpublic);
+
             paralatabla = allpublic;
 
             mostrarlosiframe();
-        }else
-        {
-            if(contador <= 0)
-            {
+        } else {
+            //if (contador <= 0) {
+            do {
                 var body = document.getElementById('cuerpo');
                 /*correo*/
                 campocorreo = document.createElement('input');
                 labelcorreo = document.createElement('label');
                 nodocorreo = document.createTextNode('Correo');
                 labelcorreo.appendChild(nodocorreo);
+                labelcorreo.style.marginRight = '29px';
                 body.appendChild(labelcorreo);
+                campocorreo.setAttribute('type', 'email');
+                campocorreo.setAttribute('id', 'email');
+                campocorreo.style.marginBottom = '10px';
                 body.appendChild(campocorreo);
+                parrafocorreo = document.createElement('p');
+                parrafocorreo.setAttribute('id', 'erroremail');
+                body.appendChild(parrafocorreo);
+                /*Aqui ponemos la validación del campo correo*/
+                document.getElementById('email').addEventListener('blur', function (event) {
+                    var evento = event || window.event;
+                    try {
+                        validar_email(document.getElementById('email').value);
+
+                    } catch (error) {
+                        evento.preventDefault();
+                        document.getElementById('erroremail').innerHTML = error;
+                        document.getElementById('erroremail').style.visibility = 'visible';
+                        document.getElementById('erroremail').style.color = '#BB0E0D';
+                        cerrojo = true;
+                    }
+                });
+                /*fin de la validación*/
                 /*password*/
                 campopass = document.createElement('input');
                 labelpass = document.createElement('label');
                 nodopass = document.createTextNode('Password');
                 labelpass.appendChild(nodopass);
+                labelpass.style.marginRight = '15px';
                 body.appendChild(labelpass);
+                campopass.setAttribute('type', 'password');
+                campopass.setAttribute('id', 'password');
+                campopass.style.marginBottom = '10px';
                 body.appendChild(campopass);
+                parrafopassword = document.createElement('p');
+                parrafopassword.setAttribute('id', 'errorpassword');
+                body.appendChild(parrafopassword);
+                /*validar el password*/
+                document.getElementById('password').addEventListener('blur', function (event) {
+                    var evento = event || window.event;
+                    try {
+                        validar_password(document.getElementById('password').value);
+                    } catch (error) {
+                        evento.preventDefault();
+                        document.getElementById('errorpassword').innerHTML = error;
+                        document.getElementById('errorpassword').style.visibility = 'visible';
+                        document.getElementById('errorpassword').style.color = '#BB0E0D';
+                        cerrojo = true;
+                    }
+                });
+                /*fin de validar el password*/
                 /*submit*/
                 boton = document.createElement('button');
                 boton.addEventListener("click", enviar);
                 nodoboton = document.createTextNode('empezar');
                 boton.appendChild(nodoboton);
+                boton.style.marginLeft = '70px';
                 body.appendChild(boton);
-                // function enviar() {
-                //   correo =  campocorreo.value;
-                //  contrasena = campopass.value;
 
-                // $.ajax({
-                //      type: 'POST',
-                //     url: 'http://localhost/publicidad/index.php/Extensiones/publicidad_consumida',
-                //        async: true,
-                //         data: {c: correo, p: contrasena},
-                //         dataType: 'json',
-                //        success: function (response) {
-                //              //console.log("hola");
-                //              //alert("hola");
-                //             cookie = response;
-                //              document.cookie = "token = "+cookie;
-                //              //setCookie("token", cookie);
-                //           }
-                //      });
                 /*aqui empiezo el ajax de libros web*/
-                var READY_STATE_COMPLETE=4;
+                var READY_STATE_COMPLETE = 4;
                 var peticion_http = null;
 
                 function inicializa_xhr() {
-                    if(window.XMLHttpRequest) {
+                    if (window.XMLHttpRequest) {
                         return new XMLHttpRequest();
                     }
-                    else if(window.ActiveXObject) {
+                    else if (window.ActiveXObject) {
                         return new ActiveXObject("Microsoft.XMLHTTP");
                     }
                 }
@@ -158,7 +212,7 @@ chrome.runtime.onMessage.addListener(
 
                 function enviar() {
                     peticion_http = inicializa_xhr();
-                    if(peticion_http) {
+                    if (peticion_http) {
                         peticion_http.onreadystatechange = procesaRespuesta;
                         peticion_http.open("POST", "http://localhost/publicidad/index.php/Extensiones/publicidad_consumida", true);
 
@@ -169,27 +223,32 @@ chrome.runtime.onMessage.addListener(
                 }
 
                 function procesaRespuesta() {
-                    if(peticion_http.readyState == READY_STATE_COMPLETE) {
-                        if(peticion_http.status == 200) {
+                    if (peticion_http.readyState == READY_STATE_COMPLETE) {
+                        if (peticion_http.status == 200) {
                             cookie = peticion_http.responseText;
-                            //cookie = JSON.parse(cookie);
-                            // alert(cookie);
-                            cookie = cookie.substring(1, cookie.length-1);
-                            document.cookie = "token = "+cookie;
+                            cookie = JSON.parse(cookie);
+                            //alert(cookie);
+                            if (cookie == null) {
+                                cerrojo = true;
+                            } else {
+                                cookie = cookie.substring(0, cookie.length);
+                                cookie = cookie.trim();
+                                document.cookie = "token = " + cookie;
+                            }
                         }
                     }
                 }
+
                 /*aqui termina el ajax de libros web*/
                 // }
 
-                contador++;
 
-                //aqui hacer un ajax para enviar el formulario y recojer la respuesta y guardarla en una cookie
-                //darle la vuelta y quitarle el else o poner en un do while
-                //setCookie("token", "zxcvbnm");
-            }}
+            } while (cerrojo);
+            //  contador++;
+        }
+        //}
     });
-window.onload = function () {
+$(document).ready(function (){
     //El getCurrent es para obtener la ventana actual
     /* chrome.windows.getCurrent(function (currentWindow) {
      chrome.tabs.query({active: true, windowId: currentWindow.id},
@@ -200,6 +259,7 @@ window.onload = function () {
      });
      });*/
     chrome.windows.getCurrent(function (currentWindow) {
+        //chrome.webNavigation.onCompleted.addListener(function (activeTabs) {
         chrome.tabs.query({active: true, windowId: currentWindow.id},
             function (activeTabs) {
                 chrome.tabs.executeScript(
@@ -208,4 +268,4 @@ window.onload = function () {
             });
     });
 
-};
+});

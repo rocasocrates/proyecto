@@ -15,7 +15,7 @@
     <meta name="keywords" content="extendiones, publicidad">
     <meta name="robots" content="index, follow">
 
-    <link rel="icon" href="imagenes/mano.png" type="image/png" sizes="16x16">
+    <!--<link rel="icon" href="imagenes/mano.png" type="image/png" sizes="16x16">-->
     <link rel="stylesheet" type="text/css" href="<?php echo  base_url('css/bootstrap.min.css') ?>" >
     <script type="text/javascript" src="<?php echo base_url('javascript/jquery-1.12.1.min.js')?>">
     </script>
@@ -25,7 +25,10 @@
 </head>
 <body>
 <div id="main">
-<?php   $this->load->library('session');?>
+<?php
+        $this->load->library('form_validation');
+       $this->load->library('session');
+       $this->load->model('Usuario');?>
 
 <header>
     <div id="contenidoheader" class="contenido">
