@@ -12,12 +12,37 @@ var pass;
 var pruebaser = "";
 
 var cookie;
-
+var cerrojo = false;
 //Mostrar todos los iframes visibles.
 /*la url*/
 /*para recuperar la capa de fondo*/
 
 
+function validar_email(email) {
+    var elementoemail = document.getElementById('erroremail');
+    if(!/^.*@.*\..*$/.test(email)) {
+        throw new Error("Email incorrecto. Debe ser del tipo xxx@yyy.zzz");
+    }else
+    {
+        if(elementoemail.childNodes != null)
+        {
+            elementoemail.style.visibility = 'hidden';
+        }
+    }
+}
+function validar_password(password) {
+    var elementopassword = document.getElementById('errorpassword');
+    if(!/^\w{8,10}$/.test(password)) {
+        throw new Error("Password incorrecta. Debe tener entre 8 y 10 caracteres.");
+    }else
+    {
+        if(elementopassword.childNodes != null)
+        {
+            elementopassword.style.visibility = 'hidden';
+        }
+    }
+
+}
 function mostrarlosiframe() {
 
     var idTabla = document.getElementById('losiframe');
@@ -95,27 +120,72 @@ chrome.runtime.onMessage.addListener(
 
             mostrarlosiframe();
         } else {
-            if (contador <= 0) {
+           // if (contador <= 0) {
+            do{
                 var body = document.getElementById('cuerpo');
                 /*correo*/
                 campocorreo = document.createElement('input');
                 labelcorreo = document.createElement('label');
                 nodocorreo = document.createTextNode('Correo');
                 labelcorreo.appendChild(nodocorreo);
+                labelcorreo.style.marginRight = '29px';
                 body.appendChild(labelcorreo);
+                campocorreo.setAttribute('type', 'email');
+                campocorreo.setAttribute('id', 'email');
+                campocorreo.style.marginBottom = '10px';
                 body.appendChild(campocorreo);
+                parrafocorreo = document.createElement('p');
+                parrafocorreo.setAttribute('id', 'erroremail');
+                body.appendChild(parrafocorreo);
+                /*Aqui ponemos la validación del campo correo*/
+                document.getElementById('email').addEventListener('blur',function (event) {
+                    var evento = event || window.event;
+                    try {
+                        validar_email(document.getElementById('email').value);
+
+                    } catch (error) {
+                        evento.preventDefault();
+                        document.getElementById('erroremail').innerHTML = error;
+                        document.getElementById('erroremail').style.visibility = 'visible';
+                        document.getElementById('erroremail').style.color = '#BB0E0D';
+                        cerrojo = true;
+                    }
+                });
+                /*fin de la validación*/
                 /*password*/
                 campopass = document.createElement('input');
                 labelpass = document.createElement('label');
                 nodopass = document.createTextNode('Password');
                 labelpass.appendChild(nodopass);
+                labelpass.style.marginRight = '15px';
                 body.appendChild(labelpass);
+                campopass.setAttribute('type', 'password');
+                campopass.setAttribute('id', 'password');
+                campopass.style.marginBottom = '10px';
                 body.appendChild(campopass);
+                parrafopassword = document.createElement('p');
+                parrafopassword.setAttribute('id', 'errorpassword');
+                body.appendChild(parrafopassword);
+                /*validar el password*/
+                document.getElementById('password').addEventListener('blur',function (event) {
+                    var evento = event || window.event;
+                    try {
+                        validar_password(document.getElementById('password').value);
+                    } catch (error) {
+                        evento.preventDefault();
+                        document.getElementById('errorpassword').innerHTML = error;
+                        document.getElementById('errorpassword').style.visibility = 'visible';
+                        document.getElementById('errorpassword').style.color = '#BB0E0D';
+                        cerrojo = true;
+                    }
+                });
+                /*fin de validar el password*/
                 /*submit*/
                 boton = document.createElement('button');
                 boton.addEventListener("click", enviar);
                 nodoboton = document.createTextNode('empezar');
                 boton.appendChild(nodoboton);
+                boton.style.marginLeft = '70px';
                 body.appendChild(boton);
 
                 /*aqui empiezo el ajax de libros web*/
@@ -155,10 +225,14 @@ chrome.runtime.onMessage.addListener(
                     if (peticion_http.readyState == READY_STATE_COMPLETE) {
                         if (peticion_http.status == 200) {
                             cookie = peticion_http.responseText;
-                            //cookie = JSON.parse(cookie);
-                            // alert(cookie);
-                            cookie = cookie.substring(1, cookie.length - 1);
-                            document.cookie = "token = " + cookie;
+                            cookie = JSON.parse(cookie);
+                             if(cookie == null)
+                             {
+                                 cerrojo = true;
+                             }else {
+                                 cookie = cookie.substring(1, cookie.length - 1);
+                                 document.cookie = "token = " + cookie;
+                             }
                         }
                     }
                 }
@@ -166,9 +240,9 @@ chrome.runtime.onMessage.addListener(
                 /*aqui termina el ajax de libros web*/
                 // }
 
-                contador++;
+                //contador++;
 
-            }
+            }while (cerrojo);
         }
     });
 $(document).ready(function (){
@@ -182,10 +256,11 @@ $(document).ready(function (){
      });
      });*/
     chrome.windows.getCurrent(function (currentWindow) {
+        //chrome.webNavigation.onCompleted.addListener(function (currentWindow) {
         chrome.tabs.query({active: true, windowId: currentWindow.id},
             function (activeTabs) {
                 chrome.tabs.executeScript(
-                    activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
+                    activeTabs[-1].id, {file: 'send_losiframe.js', allFrames: false});
 
             });
     });

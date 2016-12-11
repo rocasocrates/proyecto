@@ -1,6 +1,9 @@
 Array
 (
-    [2] => google_ads_iframe_/87824813/hola/home_0
-    [3] => google_ads_iframe_/87824813/hola/home_2
-    [4] => google_ads_iframe_/87824813/hola/home_1
+    [2] => google_ads_iframe_/5666/es_meneame/home/btf_0
+    [9] => google_ads_iframe_/5666/es_meneame/home/atf_1
+    [10] => google_ads_iframe_/5666/es_meneame/home/btf_2
+    [11] => google_ads_iframe_/5666/es_meneame/home/atf_0
+    [12] => google_ads_iframe_/5666/es_meneame/home/btf_3
+    [13] => google_ads_iframe_/5666/es_meneame/home/btf_1
 )

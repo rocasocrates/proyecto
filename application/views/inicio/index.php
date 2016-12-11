@@ -53,7 +53,7 @@
     </div>
   </nav>
     <!--<h1>¡¡¡Bienvenido</h1>-->
-    <article><!--Esto es un sitio web para cuantificar la publicidad que consumes durante tu navegación.
+    <div id="video"><!--Esto es un sitio web para cuantificar la publicidad que consumes durante tu navegación.
         Instalate la extensión mediacount desde google chrome regístrate aquí y toda la publicidad que te encuentres durante tu
         navegación por la web será guardada en este sitio y podrás verla cuando quieras solo tienes que registrarte con un correo.
         Hoy día es importante saber cuanta publicidad estas consumiendo por donde navegas nosotros te la cuantificamos-->
@@ -62,7 +62,7 @@
             <source src="<?php echo base_url('videos/mediacount.ogv')?>" type="video/ogg">
             <source src="<?php echo base_url('videos/mediacount.webm')?>" type="video/webm">
         </video>
-    </article>
+    </div>
 
 </div>
 <?php include 'footer.php'; ?>

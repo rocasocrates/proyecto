@@ -4,7 +4,63 @@
     <script type="text/javascript" src="jquery-1.12.1.min.js"></script>
     <script type="text/javascript" src="cookies2.js"></script>
     <script src='popup.js'></script>
+    <script type="text/javascript">
 
+        function validar_email(email) {
+            var elementoemail = document.getElementById('erroremail');
+            if(!/^.*@.*\..*$/.test(email)) {
+                throw new Error("Email incorrecto. Debe ser del tipo xxx@yyy.zzz");
+            }else
+            {
+                if(elementoemail.childNodes != null)
+                {
+                    elementoemail.style.visibility = 'hidden';
+                }
+            }
+        }
+        function validar_password(password) {
+            var elementopassword = document.getElementById('errorpassword');
+            if(!/^\w{8,10}$/.test(password)) {
+                throw new Error("Password incorrecta. Debe tener entre 8 y 10 caracteres.");
+            }else
+            {
+                if(elementopassword.childNodes != null)
+                {
+                    elementopassword.style.visibility = 'hidden';
+                }
+            }
+
+        }
+
+        window.onload= function () {
+s
+            document.getElementById('email').addEventListener('blur',function (event) {
+                var evento = event || window.event;
+                try {
+                    validar_email(document.getElementById('email').value);
+
+                } catch (error) {
+                    evento.preventDefault();
+                    document.getElementById('erroremail').innerHTML = error;
+                    document.getElementById('erroremail').style.visibility = 'visible';
+                    document.getElementById('erroremail').style.color = '#BB0E0D';
+                }
+            });
+            document.getElementById('password').addEventListener('blur',function (event) {
+                var evento = event || window.event;
+                try {
+                    validar_password(document.getElementById('password').value);
+                } catch (error) {
+                    evento.preventDefault();
+                    document.getElementById('errorpassword').innerHTML = error;
+                    document.getElementById('errorpassword').style.visibility = 'visible';
+                    document.getElementById('errorpassword').style.color = '#BB0E0D';
+                }
+            });
+
+        }
+
+    </script>
     <style>
         td {
             color: red;

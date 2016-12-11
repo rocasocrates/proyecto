@@ -107,6 +107,7 @@ class Extensiones extends CI_Controller
                 foreach ($query->result() as $row) {
                     $nombre = $row->token;
                 }
+
             }
         }
         //file_put_contents(__DIR__ .'/errores.txt', print_r(($correo), true));
