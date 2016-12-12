@@ -8,6 +8,7 @@
         //$num = $res->num_rows();
        // var_dump($res);die;
         if ($res->num_rows() > 0): ?>
+            <div id="transicion"><p>Esta es la publicidad que as consumido mientras navegabas</p></div>
             <table>
             <thead>
             <th>Contador</th>

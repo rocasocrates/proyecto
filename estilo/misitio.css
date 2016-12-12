@@ -194,6 +194,20 @@ td
     margin-top: 20px;
     margin-bottom: 20px;
 }
+/*la transicion*/
+#transicion{
+    transition: all 15s linear 0s;
+}
+#transicion:first-child > p
+{
+    animation: parrafo 20s alternate infinite;
+}
+@keyframes parrafo {
+    0%  { transform: translateX(900px); }
+    /*50% { transform: translateX(500px); }*/
+    100%  { transform: translateX(0px); }
+}
+/*fin de la transicion*/
 
 /*El pie de pagina */
 footer

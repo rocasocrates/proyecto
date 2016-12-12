@@ -18,7 +18,7 @@ class Usuarios extends CI_Controller {
 
            if(isset($_SESSION['minick']))
             {
-                $this->load->view('inicio/misitio');
+                $this->load->view('inicio/recuento');
 
             }else
             {

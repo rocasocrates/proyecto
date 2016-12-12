@@ -48,7 +48,6 @@
         </header>
   <nav>
     <div id="contenedornav" class="contenido">
-      <span><?= anchor('#', 'Descargas', 'class="enlace1"') ?></span>
       <span><?= anchor('Recuento/recuento', 'Recuento', 'class="enlace1"') ?></span>
     </div>
   </nav>

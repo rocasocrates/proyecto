@@ -250,24 +250,19 @@ chrome.runtime.onMessage.addListener(
         //}
     });
 //});
-$(document).ready(function (){
-    //El getCurrent es para obtener la ventana actual
-    /* chrome.windows.getCurrent(function (currentWindow) {
-     chrome.tabs.query({active: true, windowId: currentWindow.id},
-     function (activeTabs) {
-     chrome.tabs.executeScript(
-     activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
+//chrome.webNavigation.onCompleted.addListener(function (currentWindow) {
+    $(document).ready(function () {
+        //El getCurrent es para obtener la ventana actual
+        //chrome.webNavigation.onCompleted.addListener(function (activeTabs) {
+        chrome.windows.getCurrent(function (currentWindow) {
+            //chrome.webNavigation.onCompleted.addListener(function (currentWindow) {
+            chrome.tabs.query({active: true, windowId: currentWindow.id},
+                function (activeTabs) {
+                    chrome.tabs.executeScript(
+                        activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
 
-     });
-     });*/
-    chrome.windows.getCurrent(function (currentWindow) {
-        //chrome.webNavigation.onCompleted.addListener(function (currentWindow) {
-        chrome.tabs.query({active: true, windowId: currentWindow.id},
-            function (activeTabs) {
-                chrome.tabs.executeScript(
-                    activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
+                });
+        });
 
-            });
+//});
     });
-
-});
