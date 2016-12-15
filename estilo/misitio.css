@@ -9,6 +9,7 @@ html
 }
 body
 {
+    text-align: center;
     margin: 0 0 65px;
 }
 #main
@@ -81,7 +82,7 @@ background-color: #FFCD41;
 {
     display: flex;
     justify-content:flex-end;
-    justify-items: center;
+   /*justify-items: center;*/
     background-color: #FFCD41;
     max-height:35px;
     height: 35px;
@@ -153,11 +154,10 @@ background-color: #FFCD41;
 /* Aplicar gradientes de colores */
 /* Nota: no se muestran aquí todos los gradientes que tendrás que
    definir para los diferentes navegadores. */
-.btn-ttc {
+/*.btn-ttc {
     background-repeat: repeat-x;
     background-image: linear-gradient(top, #009ED2 0%, #007DA7 100%);
-...
-}
+}*/
 
 /* Estilos del estado :hover del botón */
 /* Uno de los estilos más sencillos y eficaces para el estado :hover
@@ -186,6 +186,10 @@ th
 td
 {
     padding: 10px;
+}
+h1
+{
+    text-align: center;
 }
 #video
 {

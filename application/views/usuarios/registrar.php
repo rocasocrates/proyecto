@@ -1,32 +1,136 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Publicidad</title>
-    <meta name="author" content="Manuel Roca González">
-    <meta name="description" content="Portal Web para descargar extensiones para gestionar la publicidad">
-    <meta name="keywords" content="extendiones, publicidad">
-    <meta name="robots" content="index, follow">
+    <head>
+        <meta charset="UTF-8">
+        <title>Publicidad</title>
+        <meta name="author" content="Manuel Roca González">
+        <meta name="description" content="Portal Web para descargar extensiones para gestionar la publicidad">
+        <meta name="keywords" content="extendiones, publicidad">
+        <meta name="robots" content="index, follow">
+        <script type="text/javascript">
 
-    <!--<link rel="icon" href="imagenes/mano.png" type="image/png" sizes="16x16">-->
+            function validar_nick(nick) {
+                var elementonick = document.getElementById('errornick');
+                if(!/^\w+$/.test(nick)) {
+                    throw new Error("Nick incorrecto. Debe tener algun caracter.");
+                }else
+                {
+                    if(elementonick.childNodes != null)
+                    {
+                        elementonick.style.visibility = 'hidden';
+                    }
+                }
 
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('css/bootstrap.min.css'); ?>">
-   
-    <script type="text/javascript" src="<?php echo base_url('javascript/validarFormulario.js'); ?>">
-    </script>
+            }
+            function validar_email(email) {
+                var elementoemail = document.getElementById('erroremail');
+                if(!/^.*@.*\..*$/.test(email)) {
+                    throw new Error("Email incorrecto. Debe ser del tipo xxx@yyy.zzz");
+                }else
+                {
+                    if(elementoemail.childNodes != null)
+                    {
+                        elementoemail.style.visibility = 'hidden';
+                    }
+                }
+            }
+            function validar_password(password) {
+                var elementopassword = document.getElementById('errorpassword');
+                if(!/^\w{8,10}$/.test(password)) {
+                    throw new Error("Password incorrecta. Debe tener entre 8 y 10 caracteres.");
+                }else
+                {
+                    if(elementopassword.childNodes != null)
+                    {
+                        elementopassword.style.visibility = 'hidden';
+                    }
+                }
 
-    <link rel="stylesheet" type="text/css" href="<?php  echo base_url('estilo/misitio.css');?>">
-    <script type="text/javascript" src="<?php  echo base_url('javascript/jquery-1.12.1.min.js');?>">
-    </script>
-    <!-- <script type="text/javascript" src="<?php //echo  base_url('js/bootstrap.min.js'); ?>">
+            }
+            function validar_repassword(password, repassword) {
+                var elementorepassword = document.getElementById('errorrepassword');
+                if(!/^\w{8,10}$/.test(password)) {
+                    throw new Error("Password incorrecta. Debe tener entre 8 y 10 caracteres.");
+                }
+                if (password != repassword) {
+                    throw new Error("Las contraseñas no coinciden");
+                }else
+                {
+                    if(elementorepassword.childNodes != null)
+                    {
+                        elementorepassword.style.visibility = 'hidden';
+                    }
+                }
+            }
+            window.onload= function () {
+//$(document).ready(function(){
+                document.getElementById('nickr').addEventListener('blur',function (event) {
+                    var evento = event || window.event;
+                    try {
+                        validar_nick(document.getElementById('nickr').value);
 
-   </script>-->
-</head>
+                        // document.getElementById('errornick').style.visibility = 'hidden';
+                    } catch (error) {
+                        evento.preventDefault();
+                        document.getElementById('errornick').innerHTML = error;
+                        document.getElementById('errornick').style.visibility = 'visible';
+                        document.getElementById('errornick').style.color = '#BB0E0D';
+
+                    }
+                });
+                document.getElementById('emailr').addEventListener('blur',function (event) {
+                    var evento = event || window.event;
+                    try {
+                        validar_email(document.getElementById('emailr').value);
+
+                    } catch (error) {
+                        evento.preventDefault();
+                        document.getElementById('erroremail').innerHTML = error;
+                        document.getElementById('erroremail').style.visibility = 'visible';
+                        document.getElementById('erroremail').style.color = '#BB0E0D';
+                    }
+                });
+                document.getElementById('passwordr').addEventListener('blur',function (event) {
+                    var evento = event || window.event;
+                    try {
+                        validar_password(document.getElementById('passwordr').value);
+                    } catch (error) {
+                        evento.preventDefault();
+                        document.getElementById('errorpassword').innerHTML = error;
+                        document.getElementById('errorpassword').style.visibility = 'visible';
+                        document.getElementById('errorpassword').style.color = '#BB0E0D';
+                    }
+                });
+                document.getElementById('repasswordr').addEventListener('blur',function (event) {
+                    var evento = event || window.event;
+                    try {
+                        validar_repassword(document.getElementById('passwordr').value), document.getElementById('repasswordr').value;
+                    } catch (error) {
+                        evento.preventDefault();
+                        document.getElementById('errorrepassword').innerHTML = error;
+                        document.getElementById('errorrepassword').style.visibility = 'visible';
+                        document.getElementById('errorrepassword').style.color = '#BB0E0D';
+                    }
+                });
+
+            }
+            //});
+
+
+
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/bootstrap.min.css') ?>" >
+
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('estilo/misitio.css')?>">
+
+
+    </head>
 <body>
+
 <header>
+
     <div id="contenidoheader" class="contenido">
-        <img src="<?php echo base_url('imagenes/logo.png'); ?>">
+        <a href="<?php echo base_url('index.php/Usuarios/index')?>"><img src="<?php echo base_url('imagenes/logo.png');?>" alt="logo"></a>
         <?php if (isset($mensaje)): ?> <h2><?= $mensaje; ?></h2> <?php endif; ?>
     </div>
 </header>
@@ -70,8 +174,8 @@
 <footer role="contentinfo">
     <section>
         <div>
-            <img src="<?php echo base_url('imagenes/facebook.gif');?>"/>
-            <img src="<?php echo base_url('imagenes/twitter.gif');?>"/>
+            <img src="<?php echo base_url('imagenes/facebook.gif'); ?>"/>
+            <img src="<?php echo base_url('imagenes/twitter.gif'); ?>"/>
         </div>
 
     </section>

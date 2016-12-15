@@ -52,9 +52,8 @@ function validar_repassword(password, repassword) {
     }
 }
 window.onload= function () {
-
 //$(document).ready(function(){
-    var elemento = document.getElementById('nickr').addEventListener('blur',function (event) {
+     document.getElementById('nickr').addEventListener('blur',function (event) {
         var evento = event || window.event;
         try {
             validar_nick(document.getElementById('nickr').value);

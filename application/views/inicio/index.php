@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Publicidad</title>
@@ -22,7 +21,7 @@
 <div id="main">
         <header>
           <div id="contenidoheader" class="contenido">
-              <img src="<?php echo base_url('imagenes/logo.png');?>">
+              <a href="<?php echo base_url('index.php/Usuarios/index')?>"><img src="<?php echo base_url('imagenes/logo.png');?>" alt="logo"></a>
               <?php if(isset($mensaje)): ?>
                   <h2><?= $mensaje;?></h2>
               <?php endif; ?>
@@ -51,7 +50,7 @@
       <span><?= anchor('Recuento/recuento', 'Recuento', 'class="enlace1"') ?></span>
     </div>
   </nav>
-    <!--<h1>¡¡¡Bienvenido</h1>-->
+    <h1>¡¡¡Bienvenido</h1>
     <div id="video"><!--Esto es un sitio web para cuantificar la publicidad que consumes durante tu navegación.
         Instalate la extensión mediacount desde google chrome regístrate aquí y toda la publicidad que te encuentres durante tu
         navegación por la web será guardada en este sitio y podrás verla cuando quieras solo tienes que registrarte con un correo.

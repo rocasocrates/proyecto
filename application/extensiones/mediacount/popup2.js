@@ -1,3 +1,6 @@
+/**
+ * Created by roca on 15/12/16.
+ */
 var allpublic = [];
 var paralatabla = [];
 //Array.prototype.unique=function(a){
@@ -20,31 +23,27 @@ var cerrojo = false;
 
 function validar_email(email) {
     var elementoemail = document.getElementById('erroremail');
-    if(!/^.*@.*\..*$/.test(email)) {
+    if (!/^.*@.*\..*$/.test(email)) {
         throw new Error("Email incorrecto. Debe ser del tipo xxx@yyy.zzz");
-    }else
-    {
-        if(elementoemail.childNodes != null)
-        {
+    } else {
+        if (elementoemail.childNodes != null) {
             elementoemail.style.visibility = 'hidden';
         }
     }
 }
 function validar_password(password) {
     var elementopassword = document.getElementById('errorpassword');
-    if(!/^\w{8,10}$/.test(password)) {
+    if (!/^\w{8,10}$/.test(password)) {
         throw new Error("Password incorrecta. Debe tener entre 8 y 10 caracteres.");
-    }else
-    {
-        if(elementopassword.childNodes != null)
-        {
+    } else {
+        if (elementopassword.childNodes != null) {
             elementopassword.style.visibility = 'hidden';
         }
     }
 
 }
 function mostrarlosiframe() {
-
+    //chrome.browserAction.setPopup("hola");
     var idTabla = document.getElementById('losiframe');
     // var nodo = document.getElementById('losiframe');
     while (idTabla.children.length > 1) {
@@ -80,9 +79,10 @@ function mostrarlosiframe() {
 
 // Configurar los controladores de eventos e inyectar send_losiframe.js en todos los fotogramas del activo
 // Pestaña.1479729061
+//chrome.webNavigation.onCompleted.addListener(function(){
 chrome.runtime.onMessage.addListener(
     function (losiframe) {
-        if (getCookie("token") != "") {
+        if (getCookie("token") == "") {
             //document.cookie = "token = holacaracola";
             var dn = getCookie("token");
             //alert(dn);
@@ -248,24 +248,4 @@ chrome.runtime.onMessage.addListener(
         }
         //}
     });
-$(document).ready(function (){
-    //El getCurrent es para obtener la ventana actual
-    /* chrome.windows.getCurrent(function (currentWindow) {
-     chrome.tabs.query({active: true, windowId: currentWindow.id},
-     function (activeTabs) {
-     chrome.tabs.executeScript(
-     activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
-
-     });
-     });*/
-    chrome.windows.getCurrent(function (currentWindow) {
-        //chrome.webNavigation.onCompleted.addListener(function (activeTabs) {
-        chrome.tabs.query({active: true, windowId: currentWindow.id},
-            function (activeTabs) {
-                chrome.tabs.executeScript(
-                    activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
-
-            });
-    });
-
-});
+//});

@@ -3,7 +3,7 @@
     <?php
     $user = $this->session->userdata('minick');
     if ($user != null) {
-        $res = $this->db->select('url, fecha, sum(contador) as contador', false)->from('iframes')->group_by(array("url", "fecha"))->where(array('nick_usuarios' => $user))->get();
+        $res = $this->db->select('url, fecha, sum(contador) as contador', false)->from('iframes')->group_by(array("url", "fecha"))->where(array('nick_usuarios' => $user))->order_by('fecha desc')->get();
 
         //$num = $res->num_rows();
        // var_dump($res);die;
