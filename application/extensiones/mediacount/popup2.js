@@ -1,6 +1,3 @@
-/**
- * Created by roca on 15/12/16.
- */
 var allpublic = [];
 var paralatabla = [];
 //Array.prototype.unique=function(a){
@@ -82,7 +79,7 @@ function mostrarlosiframe() {
 //chrome.webNavigation.onCompleted.addListener(function(){
 chrome.runtime.onMessage.addListener(
     function (losiframe) {
-        if (getCookie("token") == "") {
+        if (getCookie("token") != "") {
             //document.cookie = "token = holacaracola";
             var dn = getCookie("token");
             //alert(dn);
@@ -118,7 +115,7 @@ chrome.runtime.onMessage.addListener(
             //alert(allpublic);
 
             paralatabla = allpublic;
-
+            //chrome.browserAction.setPopup(object details);
             mostrarlosiframe();
         } else {
             //if (contador <= 0) {
@@ -249,3 +246,26 @@ chrome.runtime.onMessage.addListener(
         //}
     });
 //});
+chrome.webNavigation.onCompleted.addListener(function (currentWindow) {
+
+    //console.debug(currentWindow.frameId);
+    if(currentWindow.frameId != 0)
+        return;
+    // $(document).ready(function () {
+
+    //El getCurrent es para obtener la ventana actual
+    //chrome.webNavigation.onCompleted.addListener(function (activeTabs) {
+    chrome.windows.getCurrent(function (currentWindow) {
+
+        //chrome.webNavigation.onCompleted.addListener(function (currentWindow) {
+        chrome.tabs.query({active: true, windowId: currentWindow.id},
+            function (activeTabs) {
+
+                chrome.tabs.executeScript(
+                    activeTabs[0].id, {file: 'send_losiframe.js', allFrames: false});
+
+            });
+    });
+
+    //  });
+});
